@@ -9,6 +9,10 @@ const UserSchema=new Schema({
         type:String,
         required:true
     },
+    resetPasswordToken:String,
+    resetPasswordExpireAt:Date,
+    verificationToken:String,
+    verificationTokenExpireAt:Date,
 })
 
 const Users=mongoose.model("Users",UserSchema)
