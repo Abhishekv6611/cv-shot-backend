@@ -43,5 +43,4 @@ app.get('/home',(req,res)=>{
   res.json({message:"Home"})
 })
 
-export const handler = serverless(app);
-export default app;
+export default serverless(app);
