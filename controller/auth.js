@@ -2,7 +2,7 @@ import { jsonwebtoken } from "../lib/jsontoken.js"
 import { ForgetPass, sendResetPasswordEmail } from "../lib/nodemailer.js"
 import Users from "../model/user.model.js"
 import crypto from 'crypto'
-import bcrypt from 'bcrypt'
+import bcrypt from 'bcryptjs'
 
 export const Signin=async(req,res)=>{
   const {email,password}=req.body
