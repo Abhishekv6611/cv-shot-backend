@@ -40,10 +40,10 @@ const swaggerDocs = swaggerJSDoc(swaggerOptions);
 app.use("/api-docs", swaggerUI.serve, swaggerUI.setup(swaggerDocs));
 
 // Redirect root to Swagger
-
 app.get('/', (req, res) => {
-  res.json({ message: 'Welcome to the API!' });
+  res.redirect('/api-docs');
 });
+
 // Routes
 app.use(RouterApp);
 
