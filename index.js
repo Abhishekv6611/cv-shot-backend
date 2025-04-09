@@ -16,30 +16,22 @@ app.use(express.json());
 // DB Connection
 ConnectDB();
 
+
 const swaggerOptions = {
   swaggerDefinition: {
-      openapi: "3.0.0",
-      info: {
-          title: "CV-shot API",
-          version: "1.0.0",
-          description: "API documentation for the CV-shot application",
-          contact: {
-              name: "Developer",
-              email: "developer@example.com",
-          },
+    openapi: '3.0.0',
+    info: {
+      title: 'API Documentation',
+      version: '1.0.0',
+      description: 'API documentation for the backend',
+    },
+    servers: [
+      {
+        url: `http://localhost:${PORT}`,
       },
-      servers: [
-          {
-              url: `https://cv-shot-backend.vercel.app/`,
-              description: "Production server",
-          },
-          {
-              url: `http://localhost:${PORT}`,
-              description: "Development server",
-          },
-      ],
+    ],
   },
-  apis: ["./routes/*.js"],
+  apis: ['./routes/*.js'],
 };
 
 const swaggerDocs = swaggerJSDoc(swaggerOptions);
