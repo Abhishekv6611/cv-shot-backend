@@ -37,21 +37,16 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-try {
-  console.log('🟠 Connecting to DB...');
-  await ConnectDB();
-  console.log('✅ MongoDB connected');
-} catch (err) {
-  console.error('❌ DB connection failed:', err);
-}
+
 
 app.use('/auth', RouterApp);
 
-app.get('/', async (req, res) => {
+app.get("/", async (req, res) => {
   try {
-    return res.status(200).json({ message: 'API is working & MongoDB connected' });
+    await ConnectDB();
+    res.status(200).json({ message: "MongoDB connected and API is working!" });
   } catch (err) {
-    return res.status(500).json({ error: 'Something went wrong' });
+    res.status(500).json({ message: err.message });
   }
 });
 
