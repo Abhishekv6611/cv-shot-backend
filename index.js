@@ -5,6 +5,7 @@ import ConnectDB from './lib/db.js';
 import RouterApp from './routes/authRoutes.js';
 import swaggerJSDoc from 'swagger-jsdoc';
 import swaggerUI from 'swagger-ui-express';
+import path from 'path'
 
 dotenv.config();
 const app = express();
@@ -16,6 +17,8 @@ app.use(express.json());
 // DB Connection
 ConnectDB();
 
+const __dirname = path.resolve();
+app.use(express.static(path.join(__dirname, 'public')));
 
 const swaggerOptions = {
   swaggerDefinition: {
