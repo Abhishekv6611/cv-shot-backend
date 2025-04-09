@@ -47,10 +47,14 @@ try {
 
 app.use('/auth', RouterApp);
 
-app.get('/home', (req, res) => {
-  console.log('✅ /home route hit');
-  res.json({ message: 'Home Route Working 🚀' });
+app.get('/', async (req, res) => {
+  try {
+    return res.status(200).json({ message: 'API is working & MongoDB connected' });
+  } catch (err) {
+    return res.status(500).json({ error: 'Something went wrong' });
+  }
 });
+
 
 export default serverless(app);
 
