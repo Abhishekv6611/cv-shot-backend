@@ -5,7 +5,7 @@ import ConnectDB from './lib/db.js';
 import RouterApp from './routes/authRoutes.js';
 import swaggerJSDoc from 'swagger-jsdoc';
 import swaggerUI from 'swagger-ui-express';
-import path from 'path'
+
 
 dotenv.config();
 const app = express();
@@ -17,8 +17,7 @@ app.use(express.json());
 // DB Connection
 ConnectDB();
 
-const __dirname = path.resolve();
-app.use(express.static(path.join(__dirname, 'public')));
+
 
 const swaggerOptions = {
   swaggerDefinition: {
@@ -41,10 +40,10 @@ const swaggerDocs = swaggerJSDoc(swaggerOptions);
 app.use("/api-docs", swaggerUI.serve, swaggerUI.setup(swaggerDocs));
 
 // Redirect root to Swagger
-app.get('/', (req, res) => {
-  res.redirect('/api-docs');
-});
 
+app.get('/', (req, res) => {
+  res.json({ message: 'Welcome to the API!' });
+});
 // Routes
 app.use(RouterApp);
 
