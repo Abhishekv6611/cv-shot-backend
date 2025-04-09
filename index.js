@@ -37,12 +37,9 @@ const swaggerOptions = {
 const swaggerSpec = swaggerJSDoc(swaggerOptions);
 
 // Swagger route
-app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerSpec));
+app.use('/', swaggerUI.serve, swaggerUI.setup(swaggerSpec));
 
-// Redirect root to Swagger
-app.get('/', (req, res) => {
-  res.redirect('/api-docs');
-});
+
 
 // Routes
 app.use(RouterApp);
