@@ -13,6 +13,9 @@ app.use(express.json())
 
 ConnectDB()
 app.use(RouterApp)
+app.get('/',(req,res)=>{
+  res.json({message :"This is / page"})
+})
 
 app.listen(PORT,()=>{
     console.log(`server is running on port ${PORT}`);
