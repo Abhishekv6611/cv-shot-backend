@@ -1,13 +1,12 @@
 import express from 'express'
 import cors from 'cors'
 import dotenv from 'dotenv'
-import ConnectDB from './lib/db.js'
-import RouterApp from './view/authView.js' 
+import ConnectDB from '../lib/db.js'
+import RouterApp from '../view/authView.js' 
 import ServerlessHttp from 'serverless-http'
 dotenv.config()
 const app=express()
 
-const PORT=process.env.PORT || 5050
 app.use(cors())
 app.use(express.json())
 
