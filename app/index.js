@@ -37,7 +37,11 @@ app.use(cors());
 app.use(express.json());
 
 ConnectDB();
-app.use(RouterApp);
+app.use('/auth',RouterApp);
+
+app.get('/home',(req,res)=>{
+  res.json({message:"Home"})
+})
 
 export const handler = serverless(app);
 export default app;
