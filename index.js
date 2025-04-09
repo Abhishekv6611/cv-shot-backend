@@ -18,7 +18,7 @@ ConnectDB();
 
 // Swagger setup
 const swaggerOptions = {
-  definition: {
+  swaggerDefinition: {
     openapi: '3.0.0',
     info: {
       title: 'API Documentation',
@@ -31,7 +31,7 @@ const swaggerOptions = {
       },
     ],
   },
-  apis: ['./routes/*.js'], // Swagger will read JSDoc comments from here
+  apis: ['./routes/*.js'],
 };
 
 const swaggerSpec = swaggerJSDoc(swaggerOptions);
