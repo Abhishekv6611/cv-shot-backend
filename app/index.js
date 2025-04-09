@@ -26,7 +26,7 @@
 import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
-import ConnectDB from '../lib/db.js';
+// import ConnectDB from '../lib/db.js';
 import RouterApp from '../view/authView.js';
 import serverless from 'serverless-http';
 
@@ -36,7 +36,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-ConnectDB();
+// ConnectDB();
 app.use('/auth',RouterApp);
 
 app.get('/home',(req,res)=>{
