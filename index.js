@@ -11,7 +11,12 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 5050;
 
-app.use(cors());
+app.use(cors({
+  origin: ['http://localhost:5050', 'https://cv-shot-backend.vercel.app'], // Add allowed origins
+  methods: ['GET', 'POST', 'PUT', 'DELETE'], // Add allowed HTTP methods
+  credentials: true, // Allow credentials if needed
+}));
+
 app.use(express.json());
 
 // DB Connection
@@ -30,10 +35,12 @@ const swaggerOptions = {
     servers: [
       {
         url: `http://localhost:${PORT}`,
+      },{
+        url:`https://cv-shot-backend.vercel.app/`
       },
     ],
   },
-  apis: ['./routes/*.js'],
+  apis: ['./routes/*.js'], // Ensure this path is correct
 };
 
 const swaggerDocs = swaggerJSDoc(swaggerOptions);
