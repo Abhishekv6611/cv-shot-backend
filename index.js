@@ -25,7 +25,13 @@ app.use(cors({
 app.use(express.json());
 
 // DB Connection
-ConnectDB();
+ConnectDB().then(() => {
+  app.listen(PORT, () => {
+    console.log(`Server is running on http://localhost:${PORT}`);
+  });
+}).catch((err) => {
+  console.error('Database connection failed:', err);
+});
 
 
 
@@ -62,7 +68,4 @@ app.get('/', (req, res) => {
 // Routes
 app.use(RouterApp);
 
-// Start server
-app.listen(PORT, () => {
-  console.log(`Server is running on http://localhost:${PORT}`);
-});
+
