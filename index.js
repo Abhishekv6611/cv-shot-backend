@@ -30,7 +30,11 @@ const swaggerOptions = {
     servers: [
       {
         url: `http://localhost:${PORT}`,
-      },
+        description:"Local"
+      },{
+        url:`https://cv-shot-backend.vercel.app`,
+        description:"Production"
+      }
     ],
   },
   apis: ['./routes/*.js'],
