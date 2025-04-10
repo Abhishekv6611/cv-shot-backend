@@ -6,15 +6,22 @@ import RouterApp from './routes/authRoutes.js';
 import swaggerJSDoc from 'swagger-jsdoc';
 import swaggerUI from 'swagger-ui-express';
 import bodyParser from 'body-parser'
+import path from 'path'
 
 dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 5050;
+const __dirname = path.resolve();
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-app.use(cors());
+app.use(cors({
+  origin: '*', 
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  credentials: true,
+}));
+
 app.use(express.json());
 
 // DB Connection
@@ -46,6 +53,7 @@ const swaggerOptions = {
 const swaggerDocs = swaggerJSDoc(swaggerOptions);
 app.use("/api-docs", swaggerUI.serve, swaggerUI.setup(swaggerDocs));
 
+app.use('/api-docs', express.static(path.join(__dirname, 'node_modules/swagger-ui-dist')));
 // Redirect root to Swagger
 app.get('/', (req, res) => {
   res.redirect('/api-docs');
