@@ -11,11 +11,15 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 5050;
 
-app.use(cors({
-  origin: ['http://localhost:5050', 'https://cv-shot-backend.vercel.app'], // Add allowed origins
-  methods: ['GET', 'POST', 'PUT', 'DELETE'], // Add allowed HTTP methods
-  credentials: true, // Allow credentials if needed
-}));
+
+const corsOptions = {
+  origin: "*", 
+  // origin: process.env.CLIENT_URL,        --- FOR TEMPORARY NOT USING THIS CODE BECAUSE OF CORS ERROR ---
+  methods: 'GET,POST,PUT,DELETE',
+  credentials: true,
+};
+console.log(corsOptions.origin)
+app.use(cors());
 
 app.use(express.json());
 
@@ -44,7 +48,7 @@ const swaggerOptions = {
 };
 
 const swaggerDocs = swaggerJSDoc(swaggerOptions);
-app.use("/api-docs", swaggerUI.serve, swaggerUI.setup(swaggerDocs));
+app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerDocs));
 
 // Redirect root to Swagger
 app.get('/', (req, res) => {
