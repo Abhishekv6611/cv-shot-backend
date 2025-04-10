@@ -5,11 +5,14 @@ import ConnectDB from './lib/db.js';
 import RouterApp from './routes/authRoutes.js';
 import swaggerJSDoc from 'swagger-jsdoc';
 import swaggerUI from 'swagger-ui-express';
-
+import bodyParser from 'body-parser'
 
 dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 5050;
+
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
 app.use(cors());
 app.use(express.json());
