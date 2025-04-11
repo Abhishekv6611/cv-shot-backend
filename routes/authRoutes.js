@@ -68,10 +68,14 @@ router.post('/sign-in', Signin)
  *           schema:
  *             type: object
  *             required:
+ *               - username
  *               - email
  *               - password
  *             properties:
  *               
+ *               username:
+ *                 type: string
+ *                 example: johndoe
  *               email:
  *                 type: string
  *                 example: johndoe@example.com

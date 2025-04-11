@@ -36,9 +36,9 @@ export const Signin=async(req,res)=>{
 
 export const Signup=async(req,res)=>{
 
-  const{email,password}=req.body
+  const{email,password,username}=req.body
   try {
-    if(!email || !password){
+    if(!email || !password || !username){
       return res.status(400).json({success:false,message:"required all fields"})
     }
   
@@ -51,6 +51,7 @@ export const Signup=async(req,res)=>{
     const hashedPassword = await bcrypt.hash(password, salt);
 
     const newUser=await Users.create({
+      username,
       email,
       password:hashedPassword
     })
